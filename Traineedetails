@@ -1,0 +1,83 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Student {
+    private int id;
+    private String name;
+    private int age;
+
+    public Student(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getters and setters for student attributes
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nName: " + name + "\nAge: " + age + "\n";
+    }
+}
+
+public class StudentTable {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Student> students = new ArrayList<>();
+
+        while (true) {
+            System.out.println("Student Table Management");
+            System.out.println("1. Add Student");
+            System.out.println("2. View Students");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Student ID: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline character
+
+                    System.out.print("Enter Student Name: ");
+                    String name = scanner.nextLine();
+
+                    System.out.print("Enter Student Age: ");
+                    int age = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline character
+
+                    Student student = new Student(id, name, age);
+                    students.add(student);
+                    System.out.println("Student added successfully!\n");
+                    break;
+                case 2:
+                    System.out.println("Student List:\n");
+                    for (Student s : students) {
+                        System.out.println(s);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Exiting Student Table Management");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please try again.\n");
+                    break;
+            }
+        }
+    }
+}
+
